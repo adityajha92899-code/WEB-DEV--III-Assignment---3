@@ -1,0 +1,156 @@
+{
+  "info": {
+    "name": "Inventory and Data Management API",
+    "description": "Assignment 3 API tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "productId",
+      "value": "REPLACE_WITH_PRODUCT_OBJECT_ID"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create Product",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/products",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Gel Pen Pack of 15\",\n  \"sku\": \"STNY-PN-713\",\n  \"category\": \"Stationery\",\n  \"price\": 120,\n  \"quantity\": 48,\n  \"reorderLevel\": 20,\n  \"supplier\": \"Cello Pens\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "2. Get All Products",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products?page=1&limit=10"
+      }
+    },
+    {
+      "name": "3. Filter Sort Paginate",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products?category=Stationery&minPrice=50&maxPrice=200&sort=price&order=asc&page=1&limit=5"
+      }
+    },
+    {
+      "name": "4. Search Products",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products?search=pen"
+      }
+    },
+    {
+      "name": "5. Get Product by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "6. Update Product",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/products/{{productId}}",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Gel Pen Pack of 15\",\n  \"sku\": \"STNY-PN-713\",\n  \"category\": \"Stationery\",\n  \"price\": 140,\n  \"quantity\": 60,\n  \"reorderLevel\": 20,\n  \"supplier\": \"Cello Pens\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "7. Restock +10",
+      "request": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/api/products/{{productId}}/stock",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"change\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "8. Record Sale -3",
+      "request": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/api/products/{{productId}}/stock",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"change\": -3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "9. Low Stock Report",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products/low-stock"
+      }
+    },
+    {
+      "name": "10. Category Summary",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products/summary"
+      }
+    },
+    {
+      "name": "11. Delete Product",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    }
+  ]
+}
