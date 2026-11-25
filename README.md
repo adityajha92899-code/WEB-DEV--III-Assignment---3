@@ -16,15 +16,28 @@ Mongoose - Object Data Modeling (ODM) library
 📁 Project Structure
 
 inventory-system/
+
 ├── models/
+
 │   └── Product.js
+
 ├── routes/
+
 │   └── productRoutes.js
+
 ├── controllers/
+
 │   └── productController.js
+
 ├── middleware/
+
 │   └── errorHandler.js
+
 ├── .env
+
 ├── .gitignore
+
 ├── server.js
+
 └── package.json
+
